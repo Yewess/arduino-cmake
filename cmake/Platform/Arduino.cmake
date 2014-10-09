@@ -1209,7 +1209,8 @@ function(setup_arduino_programmer_burn TARGET_NAME BOARD_ID PROGRAMMER PORT AVRD
         return()
     endif()
 
-    list(APPEND AVRDUDE_ARGS "-Uflash:w:${TARGET_NAME}.hex")
+    list(APPEND AVRDUDE_ARGS "-Ueeprom:w:${TARGET_NAME}.eep:i")
+    list(APPEND AVRDUDE_ARGS "-Uflash:w:${TARGET_NAME}.hex:i")
 
     add_custom_target(${PROGRAMMER_TARGET}
                      ${ARDUINO_AVRDUDE_PROGRAM} 
